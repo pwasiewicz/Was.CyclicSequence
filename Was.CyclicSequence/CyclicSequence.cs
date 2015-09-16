@@ -22,6 +22,11 @@
 
         private readonly IDictionary<CyclicSequenceItem<T>, int> _occurences;
 
+        public CyclicSequence(params T[] sequence)
+            : this((IEnumerable<T>)sequence)
+        {
+        }
+
         public CyclicSequence(IEnumerable<T> sequence)
         {
             if (sequence == null) throw new ArgumentNullException("sequence");
