@@ -117,7 +117,7 @@
                 newOccurences.Add(newHeadTraveler.Previous, this._occurences[traveler]);
 
                 traveler = traveler.Previous;
-                newHeadTraveler = newHead.Previous;
+                newHeadTraveler = newHeadTraveler.Previous;
             }                       
         }
 

@@ -41,5 +41,29 @@ namespace Was.CyclicSequence.Tests
             Assert.AreEqual(2, elements[4]);
             Assert.AreEqual(3, elements[5]);
         }
+
+        [TestMethod]
+        public void GetEnumerator_SampleLinq_ReturnsProperElement()
+        {
+                    var cyclicSequence = new CyclicSequence<Directions>(Directions.North, Directions.East,
+            Directions.South, Directions.West);
+
+            var facing = Directions.East;
+
+
+            var elem = cyclicSequence.SkipWhile(f => f != facing).Take(4).ToList();
+
+            facing = cyclicSequence.SkipWhile(f => f != facing).Skip(1).First();
+
+            Assert.AreEqual(Directions.South, facing);
+        }
+    }
+
+    public enum Directions
+    {
+        East,
+        North,
+        West,
+        South
     }
 }
