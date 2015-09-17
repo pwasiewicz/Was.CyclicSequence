@@ -6,35 +6,40 @@
 
     internal class CyclicSequenceSynchronizedEnumerator<T> : IEnumerator<T>
     {
-        public T Current
+        private readonly CyclicSequence<T> _cyclicSequence;
+
+        public CyclicSequenceSynchronizedEnumerator(CyclicSequence<T> cyclicSequence)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            _cyclicSequence = cyclicSequence;
         }
+
+        public T Current { get; private set; }
 
         object IEnumerator.Current
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return this.Current; }
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
         }
 
         public bool MoveNext()
         {
-            throw new NotImplementedException();
+            try
+            {
+                this.Current = this._cyclicSequence.Next();
+                return true;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
         }
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException("Synchronized sequence cannot be resetted.");
         }
     }
 }

@@ -10,6 +10,8 @@
     public interface ICyclicSequence<T> : IEnumerable<T>
     {
         T Next();
+
+        IEnumerable<T> SynchronizedEnumerable();
     }
 
     public class CyclicSequence<T> : ICyclicSequence<T>
@@ -60,6 +62,16 @@
             return result;
         }
 
+        public IEnumerable<T> SynchronizedEnumerable()
+        {
+            var synch = new CyclicSequenceSynchronizedEnumerator<T>(this);
+
+            while (synch.MoveNext())
+            {
+                yield return synch.Current;
+            }
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             CyclicSequenceItem<T> copiedSequence;
@@ -72,7 +84,7 @@
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            return this.GetEnumerator();
         }
 
         private void SlideSequence()
