@@ -1,10 +1,10 @@
-﻿namespace Was.CyclicSequence.Helpers
+﻿namespace Was.CyclicSequence.Helpers.Enumerators
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
 
-    internal class CyclicSequenceEnumerator<T> : IEnumerator<T>
+    internal class CyclicSequenceIndependetEnumerator<T> : IEnumerator<T>
     {
         private readonly CyclicSequenceItem<T> _head;
         private readonly IDictionary<CyclicSequenceItem<T>, int> _occurencesDict;
@@ -15,7 +15,7 @@
 
         private CyclicSequenceItem<T> _current;
 
-        public CyclicSequenceEnumerator(CyclicSequenceItem<T> head,
+        public CyclicSequenceIndependetEnumerator(CyclicSequenceItem<T> head,
             IDictionary<CyclicSequenceItem<T>, int> occurencesDict, Func<int> versionFetcher)
         {
             if (versionFetcher == null) throw new ArgumentNullException("versionFetcher");

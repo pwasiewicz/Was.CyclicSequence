@@ -5,6 +5,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using Helpers.Enumerators;
 
     public interface ICyclicSequence<T> : IEnumerable<T>
     {
@@ -66,7 +67,7 @@
 
             this.CopySequence(out copiedSequence, out newOccurences);
 
-            return new CyclicSequenceEnumerator<T>(copiedSequence, newOccurences, () => this._version);
+            return new CyclicSequenceIndependetEnumerator<T>(copiedSequence, newOccurences, () => this._version);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

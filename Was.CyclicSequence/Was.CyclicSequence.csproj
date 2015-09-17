@@ -39,8 +39,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CyclicSequence.cs" />
-    <Compile Include="Helpers\CyclicSequenceEnumerator.cs" />
+    <Compile Include="Helpers\Enumerators\CyclicSequenceIndependetEnumerator.cs" />
     <Compile Include="Helpers\CyclicSequenceItem.cs" />
+    <Compile Include="Helpers\Enumerators\CyclicSequenceSynchronizedEnumerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
